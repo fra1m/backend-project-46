@@ -2,7 +2,9 @@
 import fs from 'fs'
 import path from 'path'
 import compare from '../src/index.js'
+import takeObjct from '../src/srips.js'
 import { program } from 'commander'
+
 
 program
   .name('gendiff')
@@ -15,8 +17,8 @@ program
     .action( (file1, file2) => {
       const fileObjct1 = JSON.parse(fs.readFileSync(path.resolve(file1)))
       const fileObjct2 = JSON.parse(fs.readFileSync(path.resolve(file2)))
-        console.log(compare(fileObjct1,fileObjct2))
+        console.log(takeObjct(compare(fileObjct1,fileObjct2)))
     } )
 
-program.parse();
+program.parse(process.argv);
 

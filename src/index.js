@@ -1,13 +1,44 @@
 import _ from 'lodash'
 
 const compare = (fileObjct1, fileObjct2) => {
-    const newObjFile = _.mergeWith(fileObjct1, fileObjct2, (file1, file2) => {
-        if (file1 === file2) {
-            return file1
+    const keysF1 = _.keys(fileObjct1)
+    const keysF2 = _.keys(fileObjct2)
+    
+    const sortedKeys = _.sortBy(_.union(keysF1,keysF2))
+
+    const compared = sortedKeys.map( (key) => {
+        if (!_.has(fileObjct1,key)) {
+            return {
+                key,
+                value: fileObjct2[key]
+            }
         }
-        return _.create(file1, file2)
+        if (!_.has(fileObjct2,key)) {
+            return {
+                key,
+                value: fileObjct1[key]
+            }
+        }
+        if (_.isObject(fileObjct1[key]) && _.isObject(fileObjct2[key])) {
+            return {
+                key,
+                children: compare(fileObjct1[key], fileObjct2[key])
+            }
+        }
+        if (fileObjct1[key] !== fileObjct2[key]) {
+            return {
+                key,
+                value1: fileObjct1[key],
+                value2: fileObjct2[key]
+            }
+        }
+        return {
+            key,
+            value: fileObjct1[key]
+        }
     })
-    return newObjFile
+
+    return compared
 }
 
 export default compare
