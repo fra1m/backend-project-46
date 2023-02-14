@@ -3,6 +3,15 @@ install:
 	npm init,
 	npm link,
 
+lint:
+	npx eslint .
+
+fix:
+	npx eslint --fix .
+
+test:
+	NODE_OPTIONS=--experimental-vm-modules npx jest
+
 gendiff: 
 	node gendiff.js -h
 
