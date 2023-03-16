@@ -11,6 +11,5 @@ test('gendiff', ()=> {
     const file1 = `__fixtures__/file1.json`
     const file2 = `__fixtures__/file2.json`
     const actual1 = toParse(file1,file2)
-    console.log(actual1)
     expect(actual1).toEqual(resultGendiff)
 })

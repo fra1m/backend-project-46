@@ -10,7 +10,7 @@ fix:
 	npx eslint --fix .
 
 test:
-	NODE_OPTIONS=--experimental-vm-modules npx jest
+	NODE_OPTIONS=--experimental-vm-modules npx jest --watch
 
 gendiff: 
 	node gendiff.js -h
