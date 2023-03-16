@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import genDiff from '../src/genDiff.js'
+import toParse from '../src/genDiff.js'
 
 const resultGendiff = fs.readFileSync(
     path.resolve(process.cwd(), '__fixtures__/result_gendiff.txt'), 
@@ -10,7 +10,7 @@ const resultGendiff = fs.readFileSync(
 test('gendiff', ()=> {
     const file1 = `__fixtures__/file1.json`
     const file2 = `__fixtures__/file2.json`
-    const actual1 = genDiff(file1,file2)
+    const actual1 = toParse(file1,file2)
     console.log(actual1)
     expect(actual1).toEqual(resultGendiff)
 })
