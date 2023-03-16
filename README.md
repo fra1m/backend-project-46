@@ -3,3 +3,6 @@
 
 ### Test coverage:
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3a6714635e684ae0a638/test_coverage)](https://codeclimate.com/github/fra1m/backend-project-46/test_coverage)
+
+### Maintainability:
+[![Maintainability](https://api.codeclimate.com/v1/badges/3a6714635e684ae0a638/maintainability)](https://codeclimate.com/github/fra1m/backend-project-46/maintainability)
