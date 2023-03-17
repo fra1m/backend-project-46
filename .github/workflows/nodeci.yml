@@ -8,11 +8,11 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [16.x]
+	node-version: [16.x]
+        os: [ubuntu-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v3
