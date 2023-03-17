@@ -1,7 +1,5 @@
 install:
-	npm ci,
-	npm init,
-	npm link,
+	npm ci
 
 lint:
 	npx eslint .
@@ -11,9 +9,6 @@ fix:
 
 test:
 	NODE_OPTIONS=--experimental-vm-modules npx jest --watch
-
-gendiff: 
-	node gendiff.js -h
 
 publish:
 	npm publish --dry-run
