@@ -19,4 +19,4 @@ publish:
 	npm publish --dry-run
 
 test-coverage:
-	NODE_OPTIONS=--experimental-vm-modules npx jest --coverageProvider=v8
+	NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
