@@ -4,7 +4,6 @@ import path from 'path'
 import { program } from 'commander'
 import toParse from '../src/genDiff.js';
 
-
 program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
