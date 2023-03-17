@@ -1,9 +1,6 @@
 name: Node CI
 
-on:
-  - push
-  - pull_request
-
+on: push
 
 env:
   CI: true
@@ -11,27 +8,26 @@ env:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
-   
-    strategy:
-        matrix:
-	node-version: [18.x]
-        os: [ubuntu-latest, macos-latest]
+    runs-on: macos-latest
 
-      steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: make install
-      - run: make lint
-      - run: make test
-      - name: Test & publish code coverage  
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: make test-coverage
-          debug: true
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: make install
+    - run: make lint
+    - run: make test
+    - name: Test & publish code coverage  
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: make test-coverage
+        debug: true
