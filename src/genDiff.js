@@ -18,8 +18,9 @@ const getData = (file) => {
 const toParse = (file1, file2) => {
     const fileObjct1 = getData(file1)
     const fileObjct2 = getData(file2)
+    const diff = compare(fileObjct1,fileObjct2)
 
-    return compare(fileObjct1,fileObjct2)
+    return diff
 }
 
 export default toParse
