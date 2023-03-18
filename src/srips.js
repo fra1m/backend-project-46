@@ -1,27 +1,52 @@
 import toStringJSON from './formats/json.js'
+import _ from 'lodash'
 
-const takeObjct = (arrObj) => {
-    let result = {}
-    for (let i = 0; i < arrObj.length; i++) {
-        if (arrObj[i]['type'] === 'chanched') {
-            result[`- ${arrObj[i]['key']}`] = arrObj[i]['value1']
-            result[`+ ${arrObj[i]['key']}`] = arrObj[i]['value2']
-            
-        }
-        else {
-            if (arrObj[i]['type'] === 'first') {
-                result[`- ${arrObj[i]['key']}`] = arrObj[i]['value'] 
-            }
-            if (arrObj[i]['type'] === 'second') {
-                result[`+ ${arrObj[i]['key']}`] = arrObj[i]['value']
-            }
-            if (arrObj[i]['type'] === 'unchanched') {
-                result[`  ${arrObj[i]['key']}`] = arrObj[i]['value']
-            }
-        }
+const space = ' '
+const spaceCount = 4
+
+const doSpacer = (depth) => space.repeat(depth * spaceCount - 2)
+const doNoSpacer = (depth) => space.repeat(depth * spaceCount - spaceCount)
+
+const stringify = (file, depth) => {
+    if (!_.isObject(file)){
+        return `${file}`
     }
-    
-    return toStringJSON(result)
+
+    const entries = Object.entries(file)
+    const lines = entries.map( ([key, value]) => `${doSpacer(depth)}  ${key}: ${stringify(value, depth + 1)}`)
+
+    return [`{`, ...lines, `${doNoSpacer(depth)}}`].join(`\n`)
 }
+
+const takeObjct = (tree) => {
+    const file = (arrObj, depth) => {
+        const lines = arrObj.map( (obj) => {
+
+            const { 
+                type, key, children, value, value1, value2 
+            } = obj
+
+            switch (type) {
+                case 'inner':
+                    return `${doSpacer(depth)}  ${key}: ${file(children, depth + 1)}`;
+                case 'first': {
+                    return `${doSpacer(depth)}- ${key}: ${stringify(value, depth + 1)}`
+                }
+                case 'second': {
+                    return `${doSpacer(depth)}+ ${key}: ${stringify(value, depth + 1)}`
+                }
+                case 'chanched': {
+                    return `${doSpacer(depth)}- ${key}: ${stringify(value1, depth + 1)}\n${doSpacer(depth)}+ ${key}: ${stringify(value2, depth + 1)}`
+                }
+                case 'unchanched' :
+                    return `${doSpacer(depth)}  ${key}: ${stringify(value, depth + 1)}`
+               
+            }
+        })
+        return [`{`, ...lines, `${doNoSpacer(depth)}}`].join(`\n`)
+    }
+    return file(tree, 1)
+}
+
 
 export default takeObjct
