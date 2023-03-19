@@ -17,7 +17,7 @@ const stringify = (file, depth) => {
     return [`{`, ...lines, `${doNoSpacer(depth)}}`].join(`\n`)
 }
 
-const stylish = (tree) => {
+const formatStylish = (tree) => {
     const file = (arrObj, depth) => {
         const lines = arrObj.map( (obj) => {
 
@@ -50,4 +50,4 @@ const stylish = (tree) => {
 }
 
 
-export default stylish
+export default formatStylish
