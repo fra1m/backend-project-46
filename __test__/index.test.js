@@ -16,8 +16,8 @@ const resultGendiff2 = readFiel('result_gendiff_rec.txt')
 const extensions = ['yml' ,'json'];
 
 test('Плоское сравнение', () => {
-    const filepath1 = fullpath(`def1.${extensions}`)
-    const filepath2 = fullpath(`def2.${extensions}`)
+    const filepath1 = fullpath(`def1.yml`)
+    const filepath2 = fullpath(`def2.yml`)
 
     expect(toParse(filepath1,filepath2)).toBe(resultGendiff1)
 })
