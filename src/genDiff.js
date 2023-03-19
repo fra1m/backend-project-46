@@ -2,7 +2,7 @@ import fs from 'fs'
 import path  from 'path'
 import compare from './compareData.js'
 import parse from './parsers.js'
-
+import stylish from './formatters/stylish.js'
 
 const readFiel = (file) => {
     const fullpath = path.resolve(process.cwd(), file)
@@ -15,12 +15,13 @@ const getData = (file) => {
     return parse(data,fileFormat)
 }
 
-const toParse = (file1, file2) => {
+const toParse = (file1, file2, format = 'stylish') => {
     const fileObjct1 = getData(file1)
     const fileObjct2 = getData(file2)
     const diff = compare(fileObjct1,fileObjct2)
 
-    return diff
+
+    return stylish(diff)
 }
 
 export default toParse

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import takeObjct from './srips.js'
-
+import toStringJSON from './formats/json.js'
 
 const compare = (fileObjct1, fileObjct2) => {
     const keysF1 = _.keys(fileObjct1)
@@ -9,6 +9,15 @@ const compare = (fileObjct1, fileObjct2) => {
     const sortedKeys = _.sortBy(_.union(keysF1,keysF2))
 
     const compared = sortedKeys.map( (key) => {
+        
+        
+        if (_.isObject(fileObjct1[key]) && _.isObject(fileObjct2[key])) {
+            return {
+                key,
+                children: compare(fileObjct1[key], fileObjct2[key]),
+                type: 'inner'
+            }
+        }
         if (!_.has(fileObjct1,key)) {
             return {
                 key,
@@ -16,18 +25,12 @@ const compare = (fileObjct1, fileObjct2) => {
                 type: 'second'
             }
         }
+        
         if (!_.has(fileObjct2,key)) {
             return {
                 key,
                 value: fileObjct1[key],
                 type: 'first'
-            }
-        }
-        if (_.isObject(fileObjct1[key]) && _.isObject(fileObjct2[key])) {
-            return {
-                key,
-                children: compare(fileObjct1[key], fileObjct2[key]),
-                type: 'inner'
             }
         }
         if (fileObjct1[key] !== fileObjct2[key]) {
@@ -38,6 +41,7 @@ const compare = (fileObjct1, fileObjct2) => {
                 type: 'chanched'
             }
         }
+        
         return {
             key,
             value: fileObjct1[key],
@@ -45,7 +49,7 @@ const compare = (fileObjct1, fileObjct2) => {
         }
     })
 
-    return takeObjct(compared)
+    return (compared)
 }
 
 export default compare

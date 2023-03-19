@@ -18,7 +18,7 @@ const stringify = (file, depth) => {
     return [`{`, ...lines, `${doNoSpacer(depth)}}`].join(`\n`)
 }
 
-const takeObjct = (tree) => {
+const stylish = (tree) => {
     const file = (arrObj, depth) => {
         const lines = arrObj.map( (obj) => {
 
@@ -40,6 +40,8 @@ const takeObjct = (tree) => {
                 }
                 case 'unchanched' :
                     return `${doSpacer(depth)}  ${key}: ${stringify(value, depth + 1)}`
+                default:
+                    throw new Error('fuck')
                
             }
         })
@@ -49,4 +51,4 @@ const takeObjct = (tree) => {
 }
 
 
-export default takeObjct
+export default stylish
