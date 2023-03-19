@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import fs from 'fs'
-import path from 'path'
 import { program } from 'commander'
 import toParse from '../src/genDiff.js';
 

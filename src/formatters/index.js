@@ -7,6 +7,9 @@ const formats = {
 }
 
 const format = (file, format) => {
+    if (!Object.hasOwn(formats, format)) {
+        throw new Error(`Format ${format} - unsupported.`)
+    }
     return formats[format](file)
 }
 
