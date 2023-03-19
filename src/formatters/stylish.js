@@ -1,4 +1,3 @@
-import toStringJSON from './formats/json.js'
 import _ from 'lodash'
 
 const space = ' '

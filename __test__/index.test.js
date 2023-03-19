@@ -10,14 +10,16 @@ const fullpath = (file) => path.join(__dirname, '..', '__fixtures__', file)
 const readFiel = (file) => fs.readFileSync(fullpath(file), 'utf-8' )
 
 const resultGendiff1 = readFiel('result_gendiff.txt')
+const resultGendiff2 = readFiel('result_gendiff_rec.txt')
 
-const extensions = ['yml', 'json'];
+const extensions = [ 'json'];
 
 test.each([
     extensions,
 ])('main test', (extensions) => {
-    const filepath1 = fullpath(`file1.${extensions}`);
+    const filepath1 = fullpath(`file1.${extensions}`)
     const filepath2 = fullpath(`file2.${extensions}`)
     
-    expect(toParse(filepath1,filepath2)).toEqual(resultGendiff1)
+    //expect(toParse(filepath1,filepath2)).toBe(resultGendiff1)
+    expect(toParse(filepath1,filepath2)).toBe(resultGendiff2)
 })

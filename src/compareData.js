@@ -1,6 +1,5 @@
 import _ from 'lodash'
-import takeObjct from './srips.js'
-import toStringJSON from './formats/json.js'
+
 
 const compare = (fileObjct1, fileObjct2) => {
     const keysF1 = _.keys(fileObjct1)
@@ -49,7 +48,7 @@ const compare = (fileObjct1, fileObjct2) => {
         }
     })
 
-    return (compared)
+    return compared
 }
 
 export default compare
