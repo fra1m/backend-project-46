@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "[![Actions Status](https://github.com/fra1m/backend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/fra1m/backend-project-46/actions)",
-  "main": "src/index.js",
+  "main": "src/genDiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
