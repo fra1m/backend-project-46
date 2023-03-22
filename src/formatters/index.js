@@ -3,16 +3,16 @@ import formatJson from './formatJson.js';
 import formatPlain from './formatPlain.js';
 
 const formats = {
-	stylish: formatStylish,
-	plain: formatPlain,
-	json: formatJson
+  stylish: formatStylish,
+  plain: formatPlain,
+  json: formatJson,
 };
 
-const format = (file, format) => {
-	if (!Object.hasOwn(formats, format)) {
-		throw new Error(`Format ${format} - unsupported.`);
-	}
-	return formats[format](file);
+const format = (file, forma) => {
+  if (!Object.hasOwn(formats, forma)) {
+    throw new Error(`Format ${forma} - unsupported.`);
+  }
+  return formats[forma](file);
 };
 
 export default format;
