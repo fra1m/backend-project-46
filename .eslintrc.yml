@@ -1,19 +1,22 @@
-
 env:
+  browser: true
   es2021: true
-  node: true
-plugins: 
-  - jest
-extends:
-  - airbnb-base
-  - 'plugin:jest/recommended'
+extends: eslint:recommended
+overrides: []
 parserOptions:
   ecmaVersion: latest
   sourceType: module
-rules: 
-  no-console: off
-  import/extensions:
+rules:
+  indent:
     - error
-    - ignorePackages
-    - js: always
-  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
+    - tab
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  no-console: off
