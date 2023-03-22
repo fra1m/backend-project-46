@@ -21,7 +21,6 @@ const gendiff = (file1, file2, defformat = 'stylish') => {
     const fileObjct2 = getData(file2)
     const diff = compare(fileObjct1,fileObjct2)
 
-
     return format(diff, defformat)
 }
 

@@ -11,6 +11,7 @@ const readFiel = (file) => fs.readFileSync(fullpath(file), 'utf-8' )
 
 const resultGendiff1 = readFiel('result_gendiff.txt')
 const resultGendiff2 = readFiel('result_gendiff_rec.txt')
+const resultPlain = readFiel('result_plain.txt')
 
 const extensions = ['yml' ,'json'];
 
@@ -28,4 +29,5 @@ test.each([
     const filepath2 = fullpath(`file2.${extensions}`)
     
     expect(toParse(filepath1,filepath2, 'stylish')).toBe(resultGendiff2)
+    expect(toParse(filepath1,filepath2, 'plain')).toBe(resultPlain)
 })
