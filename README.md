@@ -8,4 +8,4 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/3a6714635e684ae0a638/maintainability)](https://codeclimate.com/github/fra1m/backend-project-46/maintainability)
 
 ### EXAMPLE RUN
-[https://asciinema.org/connect/5f43e6c3-9b7b-44c5-b8a4-540bac14f1b8]
+[(https://asciinema.org/connect/5f43e6c3-9b7b-44c5-b8a4-540bac14f1b8)]
