@@ -31,3 +31,4 @@ test.each([
     expect(toParse(filepath1,filepath2, 'stylish')).toBe(resultGendiff2)
     expect(toParse(filepath1,filepath2, 'plain')).toBe(resultPlain)
 })
+
