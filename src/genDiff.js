@@ -5,15 +5,15 @@ import compare from './compareData.js';
 import parse from './parsers.js';
 import format from './formatters/index.js';
 
-const readFiel = (file) => {
+const readFile = (file) => {
   const fullpath = path.resolve(process.cwd(), file);
   return fs.readFileSync(fullpath, 'utf-8');
 };
 
 const getData = (file) => {
-  const data = readFiel(file);
+  const data = readFile(file);
   const fileFormat = path.extname(file).slice(1);
-  return parse(data, fileFormat);
+  return parse(data, fileFormat);m
 };
 
 const gendiff = (file1, file2, defformat = 'stylish') => {
